@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+        padding: 0;
+      }
+
+      body > * + * {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="in"></textarea>
+    <button id="cypher">Encrypt</button>
+    <textarea id="out"></textarea>
+    <button id="uncypher">Literal Reverse</button>
+    <button id="hidden">Concealed</button>
+    <script type="module">
+      const dict = ['', 'AIQJY', 'BKR', 'CLGS', 'DMT', 'ENHX', 'UVW', 'OZ', 'FP'];
+      const scrip = ['ܬ','ܫ','ܪ','ܩ','ܨ','ܦ','ܥ','ܣ','ܢ','ܡ','ܠ','ܟ','ܝ','ܛ','ܚ','ܙ','ܘ','ܗ','ܕ','ܓ','ܒ','ܐ'];
+
+      document.querySelector('#in').value = '';
+      document.querySelector('#out').value = 'ܨܬܨܦܬܦܥܬܥܩܩܥ ܨܫܦܦܬܦܥܬܥܩܩܥ ܦܬܦܨܪܥ ܣܬܣܨܫܦܦܫܥܫܫܪܫܬܫ';
+
+      document.querySelector('#cypher').addEventListener('click', (e) => {
+        document.querySelector('#out').value = document.querySelector('#in').value.split('')
+          .map((c, i) => {
+            const C = c.toUpperCase();
+            const index = dict.findIndex(p => p.includes(C));
+            if (index < 1) {
+              return ' '
+            }
+            const offset = dict[index].split('').indexOf(C);
+            return `${scrip[index]}${scrip[offset]}${scrip[index+offset]}`
+          })
+          .join('')
+      })
+
+      document.querySelector('#uncypher').addEventListener('click', (e) => {
+        const value = document.querySelector('#out').value;
+        const reversed = [];
+        for (let i = 0; i < value.length; i += 3) {
+          if (value[i] === ' ') {
+            reversed.push(value[i]);
+            i += 1;
+          }
+          const index = scrip.indexOf(value[i])
+          const offset = scrip.indexOf(value[i + 1]);
+          reversed.push(dict[index][offset])
+        }
+        document.querySelector('#in').value = reversed.join('')
+      })
+
+      document.querySelector('#hidden').addEventListener('click', (e) => {
+        const value = document.querySelector('#out').value;
+        const reversed = [];
+        for (let i = 0; i < value.length; i += 3) {
+          if (value[i] === ' ') {
+            reversed.push(value[i]);
+            continue;
+          }
+          const index = scrip.indexOf(value[i])
+          const offset = scrip.indexOf(value[i + 1]);
+          reversed.push(dict[index][offset])
+        }
+        document.querySelector('#in').value = reversed.join('')
+      })
+    </script>
+  </body>
+</html>
