@@ -20,7 +20,24 @@
     <button id="uncypher">Literal Reverse</button>
     <button id="hidden">Concealed</button>
     <script type="module">
+      /*
+      CHALDEAN SYSTEM
+      1 = A, I, Q, J, Y
+      2 = B, K, R
+      3 = C, L, G, S
+      4 = D, M, T
+      5 = E, N, H, X
+      6 = U, V, W
+      7 = O, Z
+      8 = F, P
+      */
       const dict = ['', 'AIQJY', 'BKR', 'CLGS', 'DMT', 'ENHX', 'UVW', 'OZ', 'FP'];
+      /*
+      CHALDEAN SYRIAC
+      transliteration	ʾ	b	g	d	h	w	z	ḥ	ṭ	y	k	l	m	n	s	ʿ	p	ṣ	q	r	š	t
+      letter	ܐ	ܒ	ܓ	ܕ	ܗ	ܘ	ܙ	ܚ	ܛ	ܝ	ܟ	ܠ	ܡ	ܢ	ܣ	ܥ	ܦ	ܨ	ܩ	ܪ	ܫ	ܬ
+      pronunciation	[ʔ]	[b], [v]	[g], [ɣ]	[d], [ð]	[h]	[w]	[z]	[ħ]	[tˤ]	[j]	[k], [x]	[l]	[m]	[n]	[s]	[ʕ]	[p], [f]	[sˤ]	[q]	[r]	[ʃ]	[t], [θ]
+      */
       const scrip = ['ܬ','ܫ','ܪ','ܩ','ܨ','ܦ','ܥ','ܣ','ܢ','ܡ','ܠ','ܟ','ܝ','ܛ','ܚ','ܙ','ܘ','ܗ','ܕ','ܓ','ܒ','ܐ'];
 
       document.querySelector('#in').value = '';
